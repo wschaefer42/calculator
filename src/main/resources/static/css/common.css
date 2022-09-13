@@ -1,0 +1,26 @@
+table, td, th {
+    padding: 2px 5px;
+    border: 1px solid;
+    text-align: left;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+.table-grid-2 {
+    display: grid;
+    grid-template-columns: 100px 200px;
+    justify-items: left;
+    row-gap: 10px;
+}
+
+.table-grid-3 {
+    display: grid;
+    grid-template-columns: 100px 200px 200px;
+}
