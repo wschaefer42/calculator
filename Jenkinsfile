@@ -45,14 +45,14 @@ pipeline {
           }
           stage('SonarQube Analysis') {
                 steps {
-                    withSonarQubeEnv() {
+                    withSonarQubeEnv("SonarQube") {
                         sh "./gradlew sonarqube"
                     }
                 }
           }
           stage('SonarQube Analysis II') {
                 steps {
-                    withSonarQubeEnv() {
+                    withSonarQubeEnv("SonarQube") {
                         sh "./gradlew sonarqube \
                           -Dsonar.projectKey=calculator \
                           -Dsonar.host.url=http://localhost:9000 \
