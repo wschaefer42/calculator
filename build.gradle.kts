@@ -57,3 +57,7 @@ sonarqube {
 		property("sonar.projectKey", "calculator")
 	}
 }
+
+tasks.withType<JavaCompile>().configureEach {
+	options.compilerArgs = listOf("-Xmx1024m", "-XX:MaxPermSize=256m")
+}
