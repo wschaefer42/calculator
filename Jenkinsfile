@@ -44,16 +44,20 @@ pipeline {
                 }
           }
           stage('SonarQube Analysis') {
-                withSonarQubeEnv() {
-                    sh "./gradlew sonarqube"
+                steps {
+                    withSonarQubeEnv() {
+                        sh "./gradlew sonarqube"
+                    }
                 }
           }
           stage('SonarQube Analysis II') {
-                withSonarQubeEnv() {
-                    sh "./gradlew sonarqube \
-                      -Dsonar.projectKey=calculator \
-                      -Dsonar.host.url=http://localhost:9000 \
-                      -Dsonar.login=sqa_33888846615f1d09342ccfde6ea499c3900c3ea3"
+                steps {
+                    withSonarQubeEnv() {
+                        sh "./gradlew sonarqube \
+                          -Dsonar.projectKey=calculator \
+                          -Dsonar.host.url=http://localhost:9000 \
+                          -Dsonar.login=sqa_33888846615f1d09342ccfde6ea499c3900c3ea3"
+                    }
                 }
           }
 
