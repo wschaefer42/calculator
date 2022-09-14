@@ -6,6 +6,7 @@ plugins {
 	kotlin("jvm") version "1.6.21"
 	kotlin("plugin.spring") version "1.6.21"
 	kotlin("plugin.jpa") version "1.6.21"
+	id("jacoco")
 }
 
 group = "com.example"
@@ -26,6 +27,7 @@ dependencies {
 	developmentOnly("org.springframework.boot:spring-boot-devtools")
 	runtimeOnly("com.h2database:h2")
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
+	// implementation("org.jacoco:jacoco-maven-plugin:0.8.8")
 }
 
 tasks.withType<KotlinCompile> {
@@ -37,4 +39,14 @@ tasks.withType<KotlinCompile> {
 
 tasks.withType<Test> {
 	useJUnitPlatform()
+}
+
+tasks.jacocoTestCoverageVerification {
+	violationRules {
+		rule {
+			limit {
+				minimum = "0.2".toBigDecimal()
+			}
+		}
+	}
 }
