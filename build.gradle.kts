@@ -7,6 +7,7 @@ plugins {
 	kotlin("plugin.spring") version "1.6.21"
 	kotlin("plugin.jpa") version "1.6.21"
 	id("jacoco")
+	id("org.sonarqube") version "3.4.0.2513"
 	checkstyle
 }
 
@@ -48,5 +49,11 @@ tasks.jacocoTestCoverageVerification {
 				minimum = "0.2".toBigDecimal()
 			}
 		}
+	}
+}
+
+sonarqube {
+	properties {
+		property("sonar.projectKey", "calculator")
 	}
 }
