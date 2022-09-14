@@ -5,7 +5,7 @@ pipeline {
      }
      post {
           always {
-               mail to: 'wschaefer7@gmail.com',
+               mail to: 'laron.dooley@ethereal.email',
                subject: "Completed Pipeline: ${currentBuild.fullDisplayName}",
                body: "Your build completed, please check: ${env.BUILD_URL}"
           }
