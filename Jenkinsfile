@@ -64,10 +64,12 @@ pipeline {
                 }
           }
           stage("Docker") {
+                agent any
                 steps {
-                    sh "docker build -t wschaefer42/calculator ."
-                    sh "docker push wschaefer42/calculator"
-                    sh "docker run -p 8089:8089 --rm --name calculator wschaefer42/calculator"
+                    sh "echo 'build docker image'"
+                    sh 'docker build -t wschaefer42/calculator .'
+                    sh 'docker push wschaefer42/calculator'
+                    sh 'docker run -p 8089:8089 --rm --name calculator wschaefer42/calculator
                 }
           }
           stage("Acceptance texts") {
