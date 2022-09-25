@@ -8,6 +8,7 @@ pipeline {
                mail to: 'laron.dooley@ethereal.email',
                subject: "Completed Pipeline: ${currentBuild.fullDisplayName}",
                body: "Your build completed, please check: ${env.BUILD_URL}"
+               sh "docker rm -f calculator"
           }
      }
      stages {
@@ -62,6 +63,17 @@ pipeline {
                     }
                 }
           }
-
+          stage("Docker") {
+                steps {
+                    sh "docker build -t wschaefer42/calculator ."
+                    sh "docker push wschaefer42/calculator"
+                    sh "docker run -p 8089:8089 --rm --name calculator wschaefer42/calculator"
+                }
+          }
+          stage("Acceptance texts") {
+                steps {
+                    sh "./acceptance_test.sh"
+                }
+          }
      }
 }
