@@ -70,7 +70,6 @@ pipeline {
                 }
           }
           stage("Docker") {
-                agent any
                 steps {
                     sh "echo 'build docker image'"
                     sh 'docker build -t wschaefer42/calculator .'
