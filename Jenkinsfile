@@ -63,6 +63,11 @@ pipeline {
                     }
                 }
           }
+          stage("Package") {
+                steps {
+                    sh "./gradlew build"
+                }
+          }
           stage("Docker") {
                 agent any
                 steps {
