@@ -85,7 +85,7 @@ pipeline {
           }
           stage("Acceptance test by cucumber") {
                 steps {
-                    sh "./gradlew acceptanceTest -Dcalculator.url=http://localhost:8090"
+                    sh "./gradlew acceptanceTest -Dcalculator.url=http://localhost:8089"
                 }
           }
      }
