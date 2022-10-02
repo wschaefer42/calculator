@@ -5,7 +5,7 @@ pipeline {
      }
      post {
           always {
-               mail to: 'laron.dooley@ethereal.email',
+               mail to: 'ljazmyne31@ethereal.email',
                subject: "Completed Pipeline: ${currentBuild.fullDisplayName}",
                body: "Your build completed, please check: ${env.BUILD_URL}"
                sh "docker rm -f calculator"
