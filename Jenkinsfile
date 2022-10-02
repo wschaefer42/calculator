@@ -77,10 +77,15 @@ pipeline {
                     sh 'docker run -d -p 8089:8089 --rm --name calculator wschaefer42/calculator'
                 }
           }
-          stage("Acceptance texts") {
+          stage("Acceptance test script") {
                 steps {
                     sleep 60
                     sh "chmod +x acceptance_test.sh && ./acceptance_test.sh"
+                }
+          }
+          stage("Acceptance test by cucumber") {
+                steps {
+                    sh "./gradlew acceptanceTest -Dcalculator.url=http://localhost:8090"
                 }
           }
      }
