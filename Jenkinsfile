@@ -5,7 +5,7 @@ pipeline {
      }
      post {
           always {
-               mail to: 'ljazmyne31@ethereal.email',
+               mail to: 'jazmyne31@ethereal.email',
                subject: "Completed Pipeline: ${currentBuild.fullDisplayName}",
                body: "Your build completed, please check: ${env.BUILD_URL}"
                sh "docker rm -f calculator"
@@ -77,16 +77,18 @@ pipeline {
                     sh 'docker run -d -p 8089:8089 --rm --name calculator wschaefer42/calculator'
                 }
           }
-          stage("Acceptance test script") {
-                steps {
-                    sleep 60
-                    sh "chmod +x acceptance_test.sh && ./acceptance_test.sh"
-                }
-          }
-          stage("Acceptance test by cucumber") {
-                steps {
-                    sh "./gradlew acceptanceTest -Dcalculator.url=http://localhost:8089"
-                }
+          parallel {
+              stage("Acceptance test script") {
+                    steps {
+                        sleep 60
+                        sh "chmod +x acceptance_test.sh && ./acceptance_test.sh"
+                    }
+              }
+              stage("Acceptance test by cucumber") {
+                    steps {
+                        sh "./gradlew acceptanceTest -Dcalculator.url=http://localhost:8089"
+                    }
+              }
           }
      }
 }
