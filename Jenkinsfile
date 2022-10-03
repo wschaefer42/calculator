@@ -77,7 +77,7 @@ pipeline {
                     sh 'docker run -d -p 8089:8089 --rm --name calculator wschaefer42/calculator'
                 }
           }
-          stages("Acceptance Tests") {
+          stage("Acceptance Tests") {
               parallel {
                   stage("Acceptance test script") {
                         steps {
