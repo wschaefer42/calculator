@@ -71,6 +71,9 @@ pipeline {
           }
           stage("Docker") {
                 steps {
+                    catchError {
+                        sh "docker rm -f calculator"
+                    }
                     sh "echo 'build docker image'"
                     sh 'docker build -t wschaefer42/calculator .'
                     sh 'docker push wschaefer42/calculator'
